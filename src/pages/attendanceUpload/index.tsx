@@ -80,14 +80,21 @@ const AttendanceUpload = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen">
-      <div className="mb-3 w-96">
-        <form className="mb-3" onSubmit={readUploadFile}>
-          <label htmlFor="upload" className="inline-block mb-2 text-gray-700">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded shadow-md w-96">
+        <form onSubmit={readUploadFile}>
+          <label htmlFor="upload" className="block text-sm font-medium text-gray-700">
             Upload the Attendance sheet
           </label>
-          <input type="file" id="upload" />
-          <button type="submit">Upload</button>
+          <div className="mt-2">
+            <input type="file" id="upload" className="p-2 border border-gray-300 rounded w-full" />
+          </div>
+          <button
+            type="submit"
+            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+          >
+            Upload
+          </button>
         </form>
       </div>
     </div>
