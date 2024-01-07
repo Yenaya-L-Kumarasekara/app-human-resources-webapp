@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from './layouts/footer/index';
+import Header from './layouts/header/index';
+
+const Homepage = lazy(() => import('./pages/homePage/index'));
+const Dataupload = lazy(() => import('./pages/attendanceUpload/index'));
+const Page404 = lazy(() => import('./pages/page404/index'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/upload" element={<Dataupload />} />
+          {/* Fall back URL as homepage or 404 page */}
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </Suspense>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
